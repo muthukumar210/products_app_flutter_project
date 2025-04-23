@@ -42,6 +42,6 @@ class ProductProvider with ChangeNotifier {
   }
 
   Product? getProductById(String id) {
-    return _products.firstWhere((prod) => prod.id == id, orElse: () => Product(id: '', name: '', price: 0.0, description: ''));
+    return _products.firstWhere((prod) => prod.id == id, orElse: () => Product(id: '', name: 'Unknown', price: 0.0, description: 'No description available'));
   }
 }

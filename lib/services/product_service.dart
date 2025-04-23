@@ -5,24 +5,25 @@ import 'package:http/http.dart' as http;
 import '../models/product.dart';
 
 class ProductService {
-  static const String baseUrl = 'http://localhost:5000/api/products';
+  static const String baseUrl = 'https://localhost:5000/api/products';
 
   static Future<List<Product>> fetchProducts() async {
     await Future.delayed(Duration(seconds: 2)); // simulate loading
-    return [
-      Product(
-        id: '1',
-        name: 'Test Product',
-        price: 19.99,
-        description: 'This is a test product',
-      ),
-    ];
+    // return [
+    //   Product(
+    //     id: '1',
+    //     name: 'Test Product',
+    //     price: 19.99,
+    //     description: 'This is a test product',
+    //   ),
+    // ];
     final response = await http.get(Uri.parse(baseUrl));
     if (response.statusCode == 200) {
       List data = json.decode(response.body);
       return data.map((item) => Product.fromJson(item)).toList();
-    } else {
-      throw Exception('Failed to load products');
+    } 
+    else {
+      throw Exception("Failed to load products");
     }
   }
 
